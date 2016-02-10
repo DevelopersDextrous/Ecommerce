@@ -216,7 +216,7 @@
                 <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->
                 </div><!-- upcoming events wrapper end -->
 
-                <?php include 'include/side_bar.php'; ?>
+                
                 
             
             </div><!-- row end -->
