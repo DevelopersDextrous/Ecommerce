@@ -75,42 +75,41 @@
                                 
                                 <div class="news-body">
                                 
-                                    <form action="<?php echo base_url(); ?>index.php/director/confirm_new_director" method="post" class="form-horizontal">
+                                    <form action="<?php echo base_url(); ?>index.php/manufacturer/confirm_new_manufacturer" method="post" class="form-horizontal">
                                         <div class="form-group">
                                           <label for="name" class="col-sm-2 control-label">Name:</label>
                                           <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control" id="name" placeholder="Director's Name">
+                                            <input type="text" name="name" class="form-control" id="name" placeholder="Name">
                                           </div>
                                         </div>
                                         
                                         
                                         
 
+                                       
+
                                         <div class="form-group">
-                                          <label for="branch" class="col-sm-2 control-label">Branch:</label>
-                                          <div class="col-sm-10">
-                                            <input type="text" name="branch" class="form-control" id="branch" placeholder="Branch">
+                                          <label for="site" class="col-sm-2 control-label">Website:</label>
+                                          <div class="col-sm-1">
+                                            <p>https://www.</p>
+                                          </div>
+                                          <div class="col-sm-8">
+                                            
+                                            <input type="text" name="site" class="form-control" id="site" placeholder="example.com">
                                           </div>
                                         </div>
 
                                         <div class="form-group">
-                                          <label for="designation" class="col-sm-2 control-label">Designation:</label>
+                                          <label for="contact" class="col-sm-2 control-label">Contact:</label>
                                           <div class="col-sm-10">
-                                            <input type="text" name="designation" class="form-control" id="designation" placeholder="Designation">
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label for="email" class="col-sm-2 control-label">Email:</label>
-                                          <div class="col-sm-10">
-                                            <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                                            <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact">
                                           </div>
                                         </div>
 
                                        <div class="form-group">
-                                            <label for="desc" class="col-sm-2 control-label">Description</label>
+                                            <label for="description" class="col-sm-2 control-label">Description</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" id="desc" rows="5" name="desc" placeholder="Write something for this new director..."></textarea>
+                                                <textarea class="form-control" id="description" rows="5" name="description" placeholder="Write something for this new manufacturer..."></textarea>
                                           </div>
                                       </div>
 

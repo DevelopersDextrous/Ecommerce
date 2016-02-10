@@ -53,6 +53,22 @@ class Login_model extends CI_Model {
 			return false;
 	}
 
+	public function entry_new_admin(){
+		$new_admin_data = array(
+			'first_name' => $this->input->post('first_name'),
+			'last_name' => $this->input->post('last_name'),
+			'email' => $this->input->post('email'),
+			'password' => md5($this->input->post('password'))
+			);
+
+		$new = $this->db->insert('admin', $new_admin_data);
+
+		if($new)
+			return true;
+		else
+			return false;
+	}
+
 	public function get_admin(){
 		$q = $this->db->query('SELECT id, first_name, last_name, email FROM admin');
 

@@ -1,66 +1,67 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Director extends CI_Controller {
+class Manufacturer extends CI_Controller {
 
 	public function index(){
-		$this->director_list();
+		$this->manufacturer_list();
 	}
 
-	public function director_list(){
+	public function manufacturer_list(){
 		$this->load->library('pagination');
 		$this->load->library('table');
 
 
-		$config['base_url'] = base_url().'index.php/director/director_list';
-		$config['total_rows'] = $this->db->get('directors')->num_rows();
+		$config['base_url'] = base_url().'index.php/manufacturer/manufacturer_list';
+		$config['total_rows'] = $this->db->get('manufacturers')->num_rows();
 		$config['per_page'] = 5;
 		$config['num_links'] = 3;
 
 		$this->pagination->initialize($config);
 		 
-		$data['records'] = $this->db->get('directors',5, $this->uri->segment(3) );
+		$data['records'] = $this->db->get('manufacturers',5, $this->uri->segment(3) );
 
-		$this->load->model('article_model');
-		$data['article_count'] = $this->article_model->get_total_articles();
-		$this->load->model('director_model');
-		$data['director_count'] = $this->director_model->get_total_directors();
+		$this->load->model('menu_model');
 		
-		$this->load->view('directors_list', $data);
+		$data['cat'] = $this->menu_model->get_categories();
+			
+		$data['manufacturer'] = $this->menu_model->get_manufacturers();
+		
+		$this->load->view('manufacturer_list', $data);
 	}
 
 	public function create_new() {
 		$data['errors'] = array();
 
 		if($this->session->userdata('is_logged_in') == true){
-			$this->load->view('create_new_director', $data);
+			$this->load->view('create_new_manufacturer', $data);
 		}
 		else{
 			$this->load->view('404');
 		}
 	}
 
-	public function confirm_new_director()
+	public function confirm_new_manufacturer()
 	{
 		if($this->session->userdata('is_logged_in') == true){
 			$this->load->library('form_validation');
   
 		  	$this->form_validation->set_rules('name', 'Name', 'trim|required');
-		  	$this->form_validation->set_rules('designation', 'Designation', 'trim|required');
-		  	$this->form_validation->set_rules('desc', 'Description', 'required');
+		  	$this->form_validation->set_rules('site', 'Site', 'trim|required');
+		  	$this->form_validation->set_rules('description', 'Description', 'required');
 
 		  	if($this->form_validation->run() == FALSE)
 		  	{
 		   		$data['errors'] = validation_errors();
-		   		$this->load->view('create_new_director', $data);
+		   		$this->load->view('create_new_manufacturer', $data);
 		  	}
 		  	else
 		  	{
-		  		$this->load->model('director_model');
-		   		$p = $this->director_model->entry_new_director();
+		  		$this->load->model('manufacturer_model');
+		   		$p = $this->manufacturer_model->entry_new_manufacturer();
 		   		if($p){
 		   			//echo "success";
-		   			$this->director_list();
+		   			$this->manufacturer_list();
 		   		}
 		   		else
 		   			echo "failure";

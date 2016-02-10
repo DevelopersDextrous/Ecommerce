@@ -1,16 +1,15 @@
 <?php 
-class Director_model extends CI_Model {
+class Manufacturer_model extends CI_Model {
 
-	public function entry_new_director(){
-		$new_director_data = array(
+	public function entry_new_manufacturer(){
+		$new_manu_data = array(
 			'name' => $this->input->post('name'),
-			'branch' => $this->input->post('branch'),
-			'designation' => $this->input->post('designation'),
-			'email' => $this->input->post('email'),
-			'description' => $this->input->post('desc')
+			'site' => "https://www.".$this->input->post('site'),
+			'contact' => $this->input->post('contact'),
+			'description' => $this->input->post('description')
 			);
 
-		$new = $this->db->insert('directors', $new_director_data);
+		$new = $this->db->insert('manufacturers', $new_manu_data);
 
 		if($new)
 			return true;

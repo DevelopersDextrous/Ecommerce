@@ -86,19 +86,19 @@
                                 </div> 
                             <?php } ?>
                             <div class="col-lg-12 col-md-12">
-                                <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Directors</h1>
+                                <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Manufacturers</h1>
                                 
                                 <div class="news-body">
                                  <?php foreach ($records->result() as $key): ?>                              
                                 <div class="list-group dir">
                                   <div class="line1">
                                       <h3 id="name"><?php echo $key->name.", "; ?></h3>
-                                      <h5 id="branch"><?php echo $key->branch; ?></h5>
+                                      <h5 id="branch"><?php echo $key->description; ?></h5>
 
                                   </div>
-                                  <p id="designation"><?php echo "(".$key->designation.")"; ?></p>
-                                  <p id="email"><?php echo $key->email; ?></p>
-                                  <p id="desc"><?php echo $key->description; ?></p>
+                                  <a href="<?php echo $key->site; ?>" id="site">Company Site</a>
+                                  
+                                  <p id="contact"><?php echo $key->contact; ?></p>
                                 
                                 </div>
                                 <?php endforeach; ?>
