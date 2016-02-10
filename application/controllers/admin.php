@@ -4,34 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public function index(){
-		if($this->session->userdata('is_logged_in') == true){
-			$this->load->view('admin_home');
-		}
-		else{
-			$this->load->view('404');
-		}
-	}
-
-	public function validate() {
-		$data['uname'] = $_POST['user_name'];
-		$data['pwd'] = $_POST['password'];
 		
-		$this->load->model('login_model');
-		$verify = $this->login_model->validate_credentials($data);
+		if($this->session->userdata('is_logged_in') == true){
+			$this->load->model('menu_model');
+		
+			$data['cat'] = $this->menu_model->get_categories();
+			
+			$data['manufacturer'] = $this->menu_model->get_manufacturers();
 
-		if($verify){
-			foreach ($verify as $key) {
-				$newdata = array(
-      			'user_id'  => $key->id,
-      			'user_name'  => $_POST['user_name'],
-      			'is_logged_in'  => true,
-    		);
-   
-   			$this->session->set_userdata($newdata);
-   			//print_r($newdata);
-   			$this->load->view('admin_home');
-			}
-			//$this->load->view('admin_home');
+			$this->load->view('admin_home',$data);
 		}
 		else{
 			$this->load->view('404');
@@ -42,6 +23,12 @@ class Admin extends CI_Controller {
 		$data['errors'] = array();
 
 		if($this->session->userdata('is_logged_in') == true){
+			$this->load->model('menu_model');
+		
+			$data['cat'] = $this->menu_model->get_categories();
+			
+			$data['manufacturer'] = $this->menu_model->get_manufacturers();
+
 			$this->load->view('create_new_admin', $data);
 		}
 		else{
@@ -54,7 +41,8 @@ class Admin extends CI_Controller {
 		if($this->session->userdata('is_logged_in') == true){
 			$this->load->library('form_validation');
   
-		  	$this->form_validation->set_rules('user_name', 'Username', 'trim|required|min_length[4]');
+		  	$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+		  	$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		  	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		  	$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 		  	$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
@@ -121,14 +109,5 @@ class Admin extends CI_Controller {
 			$this->load->view('404');
 		}
 		
-	}
-
-	function logout()
-	{
-
-		//$uri = $_GET['uri'];
-		$this->load->library('session');
-		$this->session->sess_destroy();
-		redirect('home');
 	}
 }

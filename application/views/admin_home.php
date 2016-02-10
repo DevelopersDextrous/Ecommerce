@@ -73,7 +73,7 @@
                             <div class="col-lg-12 col-md-12">
                     
                                 
-                                <h1 class="page-title">Welcome Admin, <?php echo $this->session->userdata('user_name'); ?></h1>
+                                <h1 class="page-title">Welcome Admin, <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name'); ?></h1>
                                 
                                 <div class="news-body">
                                     
@@ -90,14 +90,14 @@
                                         </tr>
 
                                         <tr>
-                                            <td> <b>Article</b> </td>
-                                            <td><a href="<?php echo base_url(); ?>index.php/article/article_list" class="btn btn-warning">View</a></td>
-                                            <td><a href="<?php echo base_url(); ?>index.php/article" class="btn btn-success">Create New</a></td>
-                                            <td><a href="<?php echo base_url(); ?>index.php/article/article_list_delete" class="btn btn-danger">Delete</a></td>
+                                            <td> <b>Categories</b> </td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/category/category_list" class="btn btn-warning">View</a></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/category" class="btn btn-success">Create New</a></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/category/category_list_delete" class="btn btn-danger">Delete</a></td>
                                         </tr>
 
                                         <tr>
-                                            <td><b>Directors</b></td>
+                                            <td><b>Manufacturers</b></td>
                                             <td><a href="<?php echo base_url(); ?>index.php/director/director_list" class="btn btn-warning">View</a></td>
                                             <td><a href="<?php echo base_url(); ?>index.php/director/create_new" class="btn btn-success">Create New</a></td>
                                             <td><a href="<?php echo base_url(); ?>index.php/director/load_director_list" class="btn btn-danger">Delete</a></td>

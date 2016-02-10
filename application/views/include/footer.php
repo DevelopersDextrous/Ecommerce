@@ -6,7 +6,7 @@
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2015 Millenium Tax &amp; Law Chamber. All rights reserved.
+                    &copy; 2016, E-Commerce Shop by Bashiul Alam Sabab. All rights reserved.
                     </p>
                 
                 </div>

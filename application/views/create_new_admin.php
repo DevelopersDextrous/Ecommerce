@@ -90,12 +90,7 @@
                                         </div>
                                         
 
-                                        <div class="form-group">
-                                          <label for="user_name" class="col-sm-2 control-label">User Name:</label>
-                                          <div class="col-sm-10">
-                                            <input type="text" name="user_name" class="form-control" id="user_name" placeholder="User Name">
-                                          </div>
-                                        </div>
+                                        
 
                                         <div class="form-group">
                                           <label for="email" class="col-sm-2 control-label">Email:</label>

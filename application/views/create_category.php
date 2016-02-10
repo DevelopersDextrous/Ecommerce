@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Article</title>
+    <title>Create a Category</title>
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -15,29 +15,7 @@
     <link href="<?php echo base_url(); ?>js/audioplayer/audioplayer.css" rel="stylesheet" type="text/css"><!-- Audioplayer -->
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
-    <link href="<?php echo base_url(); ?>css/back.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-.pagi_wrap a, .pagi_wrap strong{
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.428571429;
-  text-decoration: none;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-}
-.pagi_wrap strong, .pagi_wrap a:hover{
-  font-weight: normal;
-  background-color: #CCCCFF;
-}
 
-.pagi_wrap{
-  margin-bottom: 20px;
-}
-.list-group-item-text
-{
-
-}
-</style>
 </head>
 
 <body role="document" class="page">
@@ -50,7 +28,15 @@
 
         <div class="row"><!-- row -->
 
-            <?php include 'include/top_right.php' ?>
+            <nav class="k-functional-navig"><!-- functional navig -->
+        
+                <ul class="list-inline pull-right">
+                    <li><a href="<?php echo base_url(); ?>index.php/admin/logout" style="font-size: 14px; font-weight: bold;">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sign Out!
+                    </a></li>
+                </ul>
+        
+            </nav><!-- functional navig end -->
 
             <div class="col-lg-12">
 
@@ -71,60 +57,65 @@
 
             <div class="row no-gutter"><!-- row -->
 
-                <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
+                <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
 
                     <div class="col-padded"><!-- inner custom column -->
-                        
+
                         <div class="row gutter"><!-- row -->
 
-                        <?php if($this->session->userdata('is_logged_in') == true){?>
-                                <div class="pull-right back">
-                                    <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden=""></span> Back to Admin Home</a>
-                                </div> 
-                            <?php } ?>
-
                             <div class="col-lg-12 col-md-12">
-                                <h1 class="page-title text-danger"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Articles</h1>
+
+
+                                <h1 class="page-title text-primary">Create Category</h1>
                                 
                                 <div class="news-body">
-                                 <?php foreach ($records->result() as $key): ?>                              
-                                <div class="list-group">
-                                  <a href="<?php echo base_url(); ?>index.php/article/show_article?id=<?php echo $key->id; ?>" class="list-group-item">
-                                    
-                                    <h3><?php echo $key->title; ?> <small> <b>by <?php echo $key->author; ?></b></small><span id="helpBlock" class="help-block">Published on <?php echo $key->date_published; ?></span></h3>
-                                    
-                                    <p class="list-group-item-text text-muted"><?php 
-                                        $string = $key->content;
-                                        $string = substr($string, 0,200).' ... ';
-                                        echo $string;
-                                     ?>
-                                 </p>
-                                  </a>
-                                
-                                </div>
-                                <?php endforeach; ?>
-                                </div>
-                            </div>
 
-                        </div><!-- row end -->
-                        
+                                  <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>index.php/category/publish">
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-2 control-label">Category Name</label>
+                                        <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="name" name="name" placeholder="Name of the category...">
+                                      </div>
+                                  </div>
 
-                        <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
-                            <div class="pagi_wrap">
-                                <?php echo $this->pagination->create_links(); ?>
+                                  
+                              
+                          <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="description" rows="5" name="description" placeholder="Description..."></textarea>
                             </div>
                         </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-success">Publish!</button>
+                              <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info">Cancel</a>
+                          </div>
+                      </div>
+                    <?php if($errors): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $errors; ?>                                         
                     </div>
-                    </div><!-- inner custom column end -->
+                    <?php endif; ?>
+                  </form>
+              </div>
 
-                </div><!-- doc body wrapper end -->
+          </div>
 
-            <?php include 'include/side_bar.php' ?>
+      </div><!-- row end -->
 
-        </div><!-- row end -->
 
-    </div><!-- container end -->
+  </div><!-- inner custom column end -->
+
+</div><!-- doc body wrapper end -->
+
+
+
+</div><!-- row end -->
+
+</div><!-- container end -->
 
 </div><!-- content wrapper end -->
 

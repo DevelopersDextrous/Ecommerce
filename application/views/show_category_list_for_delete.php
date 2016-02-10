@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create an Article</title>
+    <title>Categories</title>
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -15,7 +15,27 @@
     <link href="<?php echo base_url(); ?>js/audioplayer/audioplayer.css" rel="stylesheet" type="text/css"><!-- Audioplayer -->
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
+    <link href="<?php echo base_url(); ?>css/modal.css" rel="stylesheet"  type="text/css">
+    <link href="<?php echo base_url(); ?>css/back.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.pagi_wrap a, .pagi_wrap strong{
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.428571429;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+.pagi_wrap strong, .pagi_wrap a:hover{
+  font-weight: normal;
+  background-color: #CCCCFF;
+}
 
+.pagi_wrap{
+  margin-bottom: 20px;
+
+}
+</style>
 </head>
 
 <body role="document" class="page">
@@ -28,7 +48,7 @@
 
         <div class="row"><!-- row -->
 
-            <nav class="k-functional-navig"><!-- functional navig -->
+           <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
                     <li><a href="<?php echo base_url(); ?>index.php/admin/logout" style="font-size: 14px; font-weight: bold;">
@@ -60,75 +80,76 @@
                 <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
 
                     <div class="col-padded"><!-- inner custom column -->
-
+                        
                         <div class="row gutter"><!-- row -->
+                        <div class="pull-right back">
+                                    <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden=""></span> Back to Admin Home</a>
+                                </div>
 
                             <div class="col-lg-12 col-md-12">
-
-
-                                <h1 class="page-title text-primary">Create Article</h1>
+                                <h1 class="page-title text-danger"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Articles</h1>
                                 
                                 <div class="news-body">
+                                 
+                                 <table class="table table-hover">
+                                    <?php foreach ($records->result() as $key): ?>    
+                                    <tr>
+                                        <td>
+                                            <h3><?php echo $key->name; ?> </h3>
+                                    
+                                    
+                                        </td>
+                                        <td><div class=""><a type="button" class="btn btn-warning dropdown-toggle" data-toggle="modal" href="#confirm<?php echo $key->id; ?>">
+                                         <span class="glyphicon glyphicon-remove"></span>
+                                             </a> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                 </table>                          
+                                
+                                
+                                </div>
+                            </div>
 
-                                  <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>index.php/article/publish">
-                                    <div class="form-group">
-                                        <label for="author" class="col-sm-2 control-label">Authors's Name</label>
-                                        <div class="col-sm-10">
-                                          <input type="text" class="form-control" id="author" name="author" placeholder="Name of the author...">
-                                      </div>
-                                  </div>
+                        </div><!-- row end -->
+                        
 
-                                  <div class="form-group">
-                                    <label for="title" class="col-sm-2 control-label">Title</label>
-                                    <div class="col-sm-10">
-                                      <input type="text" class="form-control" id="title" name="title" placeholder="Title of the article">
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="subtitle" class="col-sm-2 control-label">Subtitle</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitle of the article">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="content" class="col-sm-2 control-label">Content</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="content" rows="5" name="content" placeholder="Write something..."></textarea>
+                        <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <div class="pagi_wrap">
+                                <?php echo $this->pagination->create_links(); ?>
                             </div>
                         </div>
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">Publish!</button>
-                              <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info">Cancel</a>
-                          </div>
-                      </div>
-                    <?php if($errors): ?>
-                    <div class="alert alert-danger">
-                        <?php echo $errors; ?>                                         
                     </div>
-                    <?php endif; ?>
-                  </form>
-              </div>
+                    </div><!-- inner custom column end -->
 
-          </div>
+                </div><!-- doc body wrapper end -->
 
-      </div><!-- row end -->
+            </div><!-- sidebar wrapper end -->
 
+        </div><!-- row end -->
 
-  </div><!-- inner custom column end -->
-
-</div><!-- doc body wrapper end -->
-
-
-
-</div><!-- row end -->
-
-</div><!-- container end -->
+    </div><!-- container end -->
 
 </div><!-- content wrapper end -->
 
+ <?php foreach ($records->result() as $key): ?>
+    <div class="modal fade dark" id="confirm<?php echo $key->id; ?>" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">               
+                <header class="modal-header">
+                    <h4><strong>Are you Sure you want to Delete this Category?</strong></h4>
+                 </header>
+                <footer class="modal-footer">
+                    <a href="<?php echo base_url(); ?>index.php/category/delete_category?id=<?php echo $key->id; ?>" class="btn btn-primary" id="">Yes</a>
+                    <a href="" class="btn btn-primary" data-dismiss="modal" id="">No</a>
+                </footer> 
+              
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <?php endforeach; ?>
 
 
 <?php include 'include/footer.php';?>

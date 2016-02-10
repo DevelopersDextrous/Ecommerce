@@ -4,11 +4,11 @@ class Login_model extends CI_Model {
 
 	public function validate_credentials($data){
 		$d = array(
-               'user_name' => $data['uname'],
+               'email' => $data['email'],
                'password' => md5($data['pwd'])
             );
 
-		$this->db->select('id');             
+		$this->db->select('*');             
 		$this->db->from('admin');			
 		$this->db->where($d);
 		$q = $this->db->get();
@@ -35,16 +35,17 @@ class Login_model extends CI_Model {
 		}
 	}
 
-	public function entry_new_admin(){
-		$new_admin_data = array(
+	public function entry_new_user(){
+		$new_user_data = array(
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
-			'user_name' => $this->input->post('user_name'),
 			'email' => $this->input->post('email'),
+			'address' => $this->input->post('address'),
+			'contact' => $this->input->post('contact'),
 			'password' => md5($this->input->post('password'))
 			);
 
-		$new = $this->db->insert('admin', $new_admin_data);
+		$new = $this->db->insert('users', $new_user_data);
 
 		if($new)
 			return true;

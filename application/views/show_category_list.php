@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Article</title>
+    <title>categories</title>
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -16,7 +16,28 @@
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/back.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.pagi_wrap a, .pagi_wrap strong{
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.428571429;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+.pagi_wrap strong, .pagi_wrap a:hover{
+  font-weight: normal;
+  background-color: #CCCCFF;
+}
 
+.pagi_wrap{
+  margin-bottom: 20px;
+}
+.list-group-item-text
+{
+
+}
+</style>
 </head>
 
 <body role="document" class="page">
@@ -30,6 +51,7 @@
         <div class="row"><!-- row -->
 
             <?php include 'include/top_right.php' ?>
+
             <div class="col-lg-12">
 
                 <?php include 'include/logo.php' ?>
@@ -45,52 +67,59 @@
     <div id="k-body"><!-- content wrapper -->
 
         <div class="container"><!-- container -->
-        
+
 
             <div class="row no-gutter"><!-- row -->
 
                 <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
 
                     <div class="col-padded"><!-- inner custom column -->
-
+                        
                         <div class="row gutter"><!-- row -->
 
+                        <?php if($this->session->userdata('is_logged_in') == true){?>
+                                <div class="pull-right back">
+                                    <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden=""></span> Back to Admin Home</a>
+                                </div> 
+                            <?php } ?>
+
                             <div class="col-lg-12 col-md-12">
-
-                                <?php foreach ($records as $key): ?>
-                                <h1 class="page-title text-primary"><?php echo $key->title; ?>
-                                    <span id="helpBlock" class="help-block"><h5><?php echo $key->subtitle; ?></h5></span>
-                                    <span id="helpBlock" class="help-block"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Published on <?php echo $key->date_published; ?> |<span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <?php echo $key->author; ?></span>
-                                </h1>
-
+                                <h1 class="page-title text-danger"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Categories</h1>
                                 
                                 <div class="news-body">
-                                    <?php echo $key->content; ?>
+                                 <?php foreach ($records->result() as $key): ?>                              
+                                <div class="list-group">
+                                  <a href="<?php echo base_url(); ?>index.php/article/show_article?id=<?php echo $key->id; ?>" class="list-group-item">
+                                    
+                                    <h3><?php echo $key->name; ?> </h3>
+                                    
+                                    
+                                  </a>
+                                    
                                 </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                                </div>
                             </div>
 
                         </div><!-- row end -->
+                        
 
-
+                        <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <div class="pagi_wrap">
+                                <?php echo $this->pagination->create_links(); ?>
+                            </div>
+                        </div>
+                    </div>
                     </div><!-- inner custom column end -->
 
                 </div><!-- doc body wrapper end -->
 
-           <?php include 'include/side_bar.php' ?>
+            <?php include 'include/side_bar.php' ?>
 
         </div><!-- row end -->
-                
-            
 
     </div><!-- container end -->
-    <div id="bk">
-        <?php if($this->session->userdata('is_logged_in') == true){?>
-                                <div class="pull-left back">
-                                    <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden=""></span> Back to Admin Home</a>
-                                </div> 
-                            <?php } ?>
-    </div>
 
 </div><!-- content wrapper end -->
 
@@ -98,7 +127,6 @@
 
 <?php include 'include/footer.php';?>
 <?php include 'include/modal.php' ?>
-
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>jQuery/jquery-2.1.1.min.js"></script>
 <script src="<?php echo base_url(); ?>jQuery/jquery-migrate-1.2.1.min.js"></script>
