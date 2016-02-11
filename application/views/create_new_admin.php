@@ -35,7 +35,7 @@
            <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="<?php echo base_url(); ?>index.php/admin/logout" style="font-size: 14px; font-weight: bold;">
+                    <li><a href="<?php echo base_url(); ?>index.php/login/logout" style="font-size: 14px; font-weight: bold;">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sign Out!
                     </a></li>
                 </ul>

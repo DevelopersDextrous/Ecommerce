@@ -103,6 +103,13 @@
                                             <td><a href="<?php echo base_url(); ?>index.php/manufacturer/load_manufacturer_list" class="btn btn-danger">Delete</a></td>
                                         </tr>
 
+                                        <tr>
+                                            <td><b>Products</b></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/products/product_list" class="btn btn-warning">View</a></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/products/create_new" class="btn btn-success">Create New</a></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/manufacturer/load_manufacturer_list" class="btn btn-danger">Delete</a></td>
+                                        </tr>
+
                                     </table>
 
                                     
