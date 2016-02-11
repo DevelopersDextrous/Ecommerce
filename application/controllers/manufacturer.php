@@ -73,35 +73,41 @@ class Manufacturer extends CI_Controller {
 		}
 	}
 
-	public function load_director_list(){
+	public function load_manufacturer_list(){
 		if($this->session->userdata('is_logged_in') == true){
 			$this->load->library('pagination');
 			$this->load->library('table');
 
 
-			$config['base_url'] = base_url().'index.php/director/load_director_list';
-			$config['total_rows'] = $this->db->get('directors')->num_rows();
+			$config['base_url'] = base_url().'index.php/manufacturer/load_manufacturer_list';
+			$config['total_rows'] = $this->db->get('manufacturers')->num_rows();
 			$config['per_page'] = 5;
 			$config['num_links'] = 3;
 
 			$this->pagination->initialize($config);
 			 
-			$data['records'] = $this->db->get('directors',5, $this->uri->segment(3) );
+			$data['records'] = $this->db->get('manufacturers',5, $this->uri->segment(3) );
+
+			$this->load->model('menu_model');
+		
+			$data['cat'] = $this->menu_model->get_categories();
 			
-			$this->load->view('directors_list_for_delete', $data);
+			$data['manufacturer'] = $this->menu_model->get_manufacturers();
+			
+			$this->load->view('manufacturers_list_for_delete', $data);
 		}
 	}
 
-	public function delete_director(){
+	public function delete_manufacturer(){
 		if($this->session->userdata('is_logged_in') == true){
 			$id = $_GET['id'];
 
-			$this->load->model('director_model');
+			$this->load->model('manufacturer_model');
 
-			$d = $this->director_model->delete_director($id);
+			$d = $this->manufacturer_model->delete_manufacturer($id);
 
 			if($d) {
-				$this->load_director_list();
+				$this->load_manufacturer_list();
 			}
 		}
 		else{

@@ -109,8 +109,8 @@
                                        
                                         <tr>
                                             <td><?php echo $key->name; ?></td>
-                                            <td><?php echo $key->designation; ?></td>
-                                            <td style="text-align: center;"><a href="<?php echo base_url(); ?>index.php/director/delete_director?id=<?php echo $key->id; ?>" class="btn btn-danger">Delete</a>
+                                            
+                                            <td style="text-align: center;"><a href="<?php echo base_url(); ?>index.php/manufacturer/delete_manufacturer?id=<?php echo $key->id; ?>" class="btn btn-danger">Delete</a>
 
                                               </td>
                                         </tr>

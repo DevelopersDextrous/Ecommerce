@@ -17,25 +17,12 @@ class Manufacturer_model extends CI_Model {
 			return false;
 	}
 
-	public function delete_director($id) {
+	public function delete_manufacturer($id) {
 		//$q = $this->db->query("DELETE * FROM admin WHERE id = $id");
-		$q = $this->db->delete('directors', array('id' => $id));
+		$q = $this->db->delete('manufacturers', array('id' => $id));
 
 		if($q){
 			return true;
-		}
-	}
-
-	public function get_total_directors(){
-
-		$q = $this->db->query('SELECT * FROM directors');
-
-		if($q->num_rows() > 0)
-		{
-			foreach ($q->result() as $row) {
-				$data [] = $row;
-			}
-			return $data;
 		}
 	}
 }

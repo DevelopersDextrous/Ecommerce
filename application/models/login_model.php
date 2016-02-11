@@ -35,6 +35,27 @@ class Login_model extends CI_Model {
 		}
 	}
 
+	public function validate_user_credentials($data){
+		$d = array(
+               'email' => $data['email'],
+               'password' => md5($data['pwd'])
+            );
+
+		$this->db->select('*');             
+		$this->db->from('users');			
+		$this->db->where($d);
+		$q = $this->db->get();
+
+		if($q->num_rows() == 1){
+			return $q->result();
+			
+		}
+		else {
+			echo "nothing";
+			//return FALSE;
+		}
+	}
+
 	public function entry_new_user(){
 		$new_user_data = array(
 			'first_name' => $this->input->post('first_name'),
