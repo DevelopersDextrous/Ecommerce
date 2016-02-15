@@ -70,7 +70,7 @@
                             <div class="col-lg-12 col-md-12">
                     
                                 
-                                <h1 class="page-title">Create New Product::Step 1 of 3</h1>
+                                <h1 class="page-title">Add Product Images::Step 2 of 3</h1>
                                 
                                 <div class="news-body">
                                 
@@ -82,44 +82,7 @@
                                           </div>
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label for="description" class="col-sm-2 control-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <textarea class="form-control" id="description" rows="5" name="description" placeholder="Write something for this new product..."></textarea>
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="manufacturer" class="col-sm-2 control-label">Manufacturer:</label>
-                                            <div class="col-sm-10">
-                                                <select id="manufacturer" class="manufacturer form-control" name="manufacturer">
-                                                    <option value="select_manufacturer">Select Manufacturer</option>
-                                                    <?php foreach ($manufacturer as $key): ?>
-                                                        <option value="<?php echo $key->id; ?>"><?php echo $key->name; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                         <div class="form-group">
-                                          <label for="price" class="col-sm-2 control-label">Price:</label>
-                                          <div class="col-sm-10">
-                                            <input type="number" step="any" name="price" class="form-control" id="price" placeholder="Price">
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label for="quantity" class="col-sm-2 control-label">Quantity:</label>
-                                          <div class="col-sm-10">
-                                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity">
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="prod_stat" class="col-sm-2 control-label">Public:</label>
-                                            <input type="radio" class="" value="Y" name="prod_stat">Yes
-                                            <input type="radio" class="" value="N" name="prod_stat">No
-                                        </div>
+                                        
 
                                         
 
@@ -127,7 +90,6 @@
                                             <div class="col-sm-offset-2 col-sm-10">
 
                                                 <input type="submit" class="btn btn-large btn-success" value="Confirm">
-                                                <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-info">Cancel</a>
                                             </div>
                                         </div>
                                     
