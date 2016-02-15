@@ -21,7 +21,12 @@ class Login extends CI_Controller {
    
    			$this->session->set_userdata($newdata);
    			//print_r($newdata);
-   			$this->load->view('admin_home');
+   			$this->load->model('menu_model');
+		
+			$data['cat'] = $this->menu_model->get_categories();
+			
+			$data['manufacturer'] = $this->menu_model->get_manufacturers();
+   			$this->load->view('admin_home', $data);
 			}
 			//$this->load->view('admin_home');
 		}

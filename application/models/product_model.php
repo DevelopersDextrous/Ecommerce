@@ -39,4 +39,9 @@ class Product_model extends CI_Model {
 			return $q->result();	
 		}
 	}
+
+	public function save_product_image($data) {
+		
+		
+	}
 }
