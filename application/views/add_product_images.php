@@ -74,11 +74,8 @@
                                 
                                 <div class="news-body">
                                 
-                                    <?php $attributes = array('class' => 'form-horizontal', 'role' => 'form');
-                                      echo form_open_multipart('products/add_images', $attributes); 
-                                      ?>
                                       
-                                      
+                                      <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/products/add_images">
                                       
                                       <div class="form-group">
                                         <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
@@ -87,40 +84,16 @@
                                         </div>
                                       </div>
 
-                                      <div class="form-group">
-                                        <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
-                                        <div class="col-sm-10">
-                                          <input type="file" name="userfile[]" multiple="">
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
-                                        <div class="col-sm-10">
-                                          <input type="file" name="userfile[]" multiple="">
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
-                                        <div class="col-sm-10">
-                                          <input type="file" name="userfile[]" multiple="">
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
-                                        <div class="col-sm-10">
-                                          <input type="file" name="userfile[]" multiple="">
-                                        </div>
-                                      </div>
+                                     
                                                   
                                       <div class="form-group">
                                                     <div class="col-sm-offset-2 col-sm-10">
-                                          <?php echo form_submit('upload','Submit!',"class='btn btn-success msg'"); ?>
+                                          <input type="submit" value="Upload" name="save">
                                                     </div>
                                                   </div>
-                                    <?php echo form_close(); ?>
+
+                                        </form>
+                                 
                                 </div>
                             
                             </div>

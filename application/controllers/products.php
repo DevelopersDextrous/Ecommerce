@@ -108,14 +108,14 @@ class Products extends CI_Controller {
 			}	
 
 
-		if ($this->input->post('upload')) {
-			echo 'upload';
+		// if ($this->input->post('upload')) {
+		// 	echo 'upload';
 			
-			$query = $this->product_model->save_product_image();
+		// 	$query = $this->product_model->save_product_image();
 
-			if($query) {
-				echo 'success';
-			}
-		}
+		// 	if($query) {
+		// 		echo 'success';
+		// 	}
+		// }
 	}
 }
