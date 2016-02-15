@@ -25,6 +25,7 @@ class Products extends CI_Controller {
 		}
 	}
 
+
 	public function confirm_new_product() {
 		if($this->session->userdata('is_logged_in') == true){
 			$this->load->library('form_validation');
@@ -62,6 +63,8 @@ class Products extends CI_Controller {
 						
 					$data['manufacturer'] = $this->menu_model->get_manufacturers();
 
+					$data['error'] = '';
+
 					$this->load->view('add_product_images', $data);
 		   		}
 		   		else
@@ -75,47 +78,43 @@ class Products extends CI_Controller {
 		}
 	}
 
-	public function add_images() {
+	private function set_up_config() {
 		$config = array(
 				'allowed_types' => 'jpg|jpeg|gif|png',
 				'upload_path' => '../img',
 				'encrypt_name' => true,
 				'overwrite' => FALSE
 			);
-			
-			$files = $_FILES;
-			$file_loop = count($_FILES['userfile']['name']);
 
-			for($i=0; $i<$file_loop; $i++) {
-				$_FILES['userfile']['name'] = $files['userfile']['name'][$i];
-				$_FILES['userfile']['type']= $files['userfile']['type'][$i];
-        		$_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-        		$_FILES['userfile']['error']= $files['userfile']['error'][$i];
-        		$_FILES['userfile']['size']= $files['userfile']['size'][$i];	
-			}
+		return $config;	
+	}
 
-			$this->load->library('upload', $config);
+	public function do_upload() {
+		
+		$count = count($_FILES['userfile']['size']);
 
-			if($this->upload->do_upload()) { 
-				$image_data = $this->upload->data();
+	    foreach($_FILES as $key=>$value){
+	        for($n=0; $n<=$count-1; $n++) {
+	            $_FILES['userfile']['name']=$value['name'][$n];
+	            // $_FILES['userfile']['type']    = $value['type'][$n];
+	            // $_FILES['userfile']['tmp_name'] = $value['tmp_name'][$n];
+	            // $_FILES['userfile']['error']       = $value['error'][$n];
+	            // $_FILES['userfile']['size']    = $value['size'][$n];   
 
-				$content = array(
-				'p_id' => $this->session->userdata('prod_id'),
-				'file_path' => 'img/'.$image_data['file_name']
-				);
+	                $config['upload_path'] = '../img';
+	                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	                                    $config['max_size']       = 0;
 
-				$this->db->insert('prod_image', $content);
-			}	
+	            $this->load->library('upload', $config);
+	            $this->upload->do_upload();
+	            $data = $this->upload->data();
 
-
-		// if ($this->input->post('upload')) {
-		// 	echo 'upload';
-			
-		// 	$query = $this->product_model->save_product_image();
-
-		// 	if($query) {
-		// 		echo 'success';
-		// 	}
-		// }
+	            $input_data = array(
+	            	'file_path' => 'img/'.$data['name'],
+	            	'p_id' => $this->session->userdata('prod_id')
+	            	);
+	            $this->db->insert('prod_image', $input_data);
+	        }
+	    } 
 	}
 }

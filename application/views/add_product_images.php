@@ -74,13 +74,16 @@
                                 
                                 <div class="news-body">
                                 
-                                      
-                                      <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/products/add_images">
+                                      <?php if(isset($error)) {
+                                        echo $error;
+                                      } ?>
+                                      <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/products/do_upload">
                                       
                                       <div class="form-group">
                                         <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
                                         <div class="col-sm-10">
-                                          <input type="file" name="userfile[]" multiple="">
+                                          <input name="userfile[]" id="userfile" type="file" multiple="" />
+                                          <p class="help-block">Upload Product Images Here!</p>
                                         </div>
                                       </div>
 
