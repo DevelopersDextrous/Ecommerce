@@ -1,0 +1,25 @@
+#cart_icon {
+    float: right;
+    border-radius: 15px;
+    background: #73AD21;
+    padding: 10px; 
+    width: 100px;
+    height: 80px; 
+    position:fixed;
+    top: 40%;
+    left: 92.4%;
+}
+
+#cart_img {
+    position: relative;
+    height: 80%;
+    width: 100%;
+}
+#numberOfItems {
+    position: relative;
+    text-align: center;
+}
+
+#cartItems {
+    color: red;
+}
