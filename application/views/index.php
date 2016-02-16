@@ -17,31 +17,31 @@
         <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
         <link href="<?php echo base_url(); ?>css/cart.css" rel="stylesheet" type="text/css"/><!-- cart style -->
 
-<style type="text/css">
-.pagi_wrap a, .pagi_wrap strong{
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.428571429;
-  text-decoration: none;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-}
-.pagi_wrap strong, .pagi_wrap a:hover{
-  font-weight: normal;
-  background-color: #CCCCFF;
-}
+        <style type="text/css">
+            .pagi_wrap a, .pagi_wrap strong{
+                padding: 6px 12px;
+                margin-left: -1px;
+                line-height: 1.428571429;
+                text-decoration: none;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+            }
+            .pagi_wrap strong, .pagi_wrap a:hover{
+                font-weight: normal;
+                background-color: #CCCCFF;
+            }
 
-.pagi_wrap{
-  margin-bottom: 20px;
+            .pagi_wrap{
+                margin-bottom: 20px;
 
-}
+            }
 
-#name:hover {
-    color: red;
-}
+            #name:hover {
+                color: red;
+            }
 
 
-</style>
+        </style>
     </head>
 
     <body role="document">
@@ -68,46 +68,52 @@
             </div><!-- row end -->
 
         </div><!-- container + head wrapper end -->
+
+        <!--Shopping Cart-->
         <div id="cart_icon">
             <img id="cart_img" src="<?php echo base_url(); ?>img/cart.png" alt=""/><!--
-            --><p id="numberOfItems"><b id="cartItems">0 </b><b>items</b></p>
+            --><p id="numberOfItems"><b id="cartItems">0</b></p>
+            <div id="comment_bubble"></div>
         </div>
+
+        <!--Shopping Cart End-->
+
         <div id="k-body"><!-- content wrapper -->
 
             <div class="container"><!-- container -->
                 <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Featured Products</h1>
                 <div class="row no-gutter fullwidth"><!-- row -->
                     <?php foreach ($records->result() as $key): ?>
-                    <div class="col-lg-8 col-lg-offset 2 clearfix"><!-- featured posts slider -->
+                        <div class="col-lg-8 col-lg-offset 2 clearfix"><!-- featured posts slider -->
 
-                        
 
-                        
 
-                        <img src="<?php
-                                            echo base_url();
-                                            echo $key->image;
-                                            ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" >
 
-                        <a href="products/view_product?id=<?php echo $key->id; ?>"><h3 id="name"><?php echo $key->name; ?></h3></a>
-                        <h5 id="branch"><?php echo $key->description; ?></h5>
-                        <h5 id="branch"><?php echo $key->price; ?></h5>
 
-                        
+                            <img src="<?php
+                            echo base_url();
+                            echo $key->image;
+                            ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" >
 
-                    </div><!-- featured posts slider end -->
+                            <a href="products/view_product?id=<?php echo $key->id; ?>"><h3 id="name"><?php echo $key->name; ?></h3></a>
+                            <h5 id="branch"><?php echo $key->description; ?></h5>
+                            <h5 id="branch"><?php echo $key->price; ?></h5>
+
+
+
+                        </div><!-- featured posts slider end -->
 
                     <?php endforeach; ?>
 
                 </div><!-- row end -->
 
                 <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
-                            <div class="pagi_wrap">
-                                <?php echo $this->pagination->create_links(); ?>
-                            </div>
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="pagi_wrap">
+                            <?php echo $this->pagination->create_links(); ?>
                         </div>
                     </div>
+                </div>
 
 
             </div><!-- container end -->
@@ -145,6 +151,7 @@
 
         <!-- Theme -->
         <script src="<?php echo base_url(); ?>js/theme.js"></script>
+        <script src="<?php echo base_url(); ?>js/cart.js"></script>
 
     </body>
 </html>
