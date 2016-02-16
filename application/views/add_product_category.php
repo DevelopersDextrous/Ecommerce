@@ -70,28 +70,38 @@
                             <div class="col-lg-12 col-md-12">
                     
                                 
-                                <h1 class="page-title">Add Product Images::Step 2 of 3</h1>
+                                <h1 class="page-title">Add Product Category::Step 3 of 3</h1>
                                 
                                 <div class="news-body">
                                 
-                                     <?php $attributes = array('class' => 'form-horizontal', 'role' => 'form');
-                            echo form_open_multipart('products/save_product_image', $attributes); 
-                            ?>    
-                            <div class="form-group">
-                              <label for="exampleInputFile" class="col-sm-2 control-label">Upload Image</label>
-                              <div class="col-sm-10">
-                                <?php echo form_upload('userfile'); ?>
-                                <p class="help-block">Upload Product Image Here!</p>
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <div class="col-sm-offset-2 col-sm-10">
-                                <?php echo form_submit('upload','Submit!',"class='btn btn-success'"); ?>
-                              </div>
-                            </div>
-                          <?php echo form_close(); ?>
-                                 
+                                
+
+                                        <div class="form-group">
+                                            <label for="manufacturer" class="col-sm-2 control-label">Category:</label>
+                                            <div class="col-sm-10">
+                                                <select id="cat" class="cat form-control" name="manufacturer">
+                                                    <option value="select_cat">Select Category</option>
+                                                    <?php foreach ($cat as $key): ?>
+                                                        <option value="<?php echo $key->id; ?>"><?php echo $key->name; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+                                        
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+
+                                                <button class="btn btn-large btn-warning add_cat">Add Category</button>
+                                                <a href="<?php echo base_url(); ?>index.php/admin" class="btn btn-large btn-success save">Save &amp; Exit</a>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    
                                 </div>
                             
                             </div>
@@ -111,6 +121,9 @@
     
     <?php include 'include/footer.php' ?>
     <?php include 'include/modal.php' ?>
+
+
+
 
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>jQuery/jquery-2.1.1.min.js"></script>
@@ -140,6 +153,41 @@
     
     <!-- Theme -->
     <script src="<?php echo base_url(); ?>js/theme.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //alert('inside script');
+            
+            $('.save').hide();
+            var count = 0;
+            if(count > 0)
+                $('.save').show();
+
+            $('.add_cat').on('click', function() {
+                var value = $('#cat').val();
+                //alert(value);
+                if(value != 0) {
+                    count++;
+                    $('.save').show();
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url() ?>" + "index.php/products/add_category",
+                        data: "cat_id="+value,
+                        success: function(response) {
+                            var options = JSON.parse(response);
+                           // alert(response);
+                            
+                        }
+                    });
+                }
+
+                alert('Category Added');
+            });
+
+            
+        });
+    </script>
     
   </body>
 </html>

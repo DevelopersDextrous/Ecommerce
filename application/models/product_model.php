@@ -40,8 +40,54 @@ class Product_model extends CI_Model {
 		}
 	}
 
-	public function save_product_image($data) {
-		
-		
+	var $gallery_path;
+	function save_product_image() {
+		$this->gallery_path = realpath(APPPATH . '../img');        
+        $config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $this->gallery_path
+		);
+		$this->load->library('upload', $config);
+		$this->upload->do_upload();
+		$image_data = $this->upload->data();
+
+		$content = array(
+			'image' => 'img/'.$image_data['file_name']
+			);
+
+		$this->db->where('id', $this->session->userdata('prod_id'));
+		$update = $this->db->update('products', $content);
+		return $update;
+	}
+
+	public function save_product_category($cat_id) {
+		$content = array(
+			'p_id' => $this->session->userdata('prod_id'),
+			'cat_id' => $cat_id
+			);
+
+		$this->db->insert('product_category', $content);
+	}
+
+	public function get_product($id) {
+
+		$q = $this->db->query("SELECT products.name, products.description, products.price,
+		products.quantity, products.date_added, products.image,
+		categories.name AS cat_name, manufacturers.name AS manu_name FROM products 
+			INNER JOIN product_category ON products.id = product_category.p_id 
+			INNER JOIN categories ON categories.id = product_category.cat_id
+			INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+			WHERE products.id = '$id' ");
+
+		if ($q->num_rows > 0) {
+
+			foreach ($q->result() as $row) {
+				$data[] = $row;
+			}
+			print_r($data);
+			die();
+			return $data;
+			
+		} 
 	}
 }

@@ -50,12 +50,13 @@ class Products extends CI_Controller {
 
 		   			if($id) {
 		   				foreach ($id as $key) {
-							$newdata = array(
-			      			'prod_id'  => $key->id
-			    		);
-			   
+							$d = $key->id;
+						}
+			   			$newdata = array(
+			      			'prod_id'  => $d
+			      			
+			    			);
 			   			$this->session->set_userdata($newdata);
-		   			}
 
 					$this->load->model('menu_model');
 					
@@ -75,6 +76,26 @@ class Products extends CI_Controller {
 	
 		else{
 			$this->load->view('404');
+		}
+	}
+
+	public function save_product_image() {
+
+		if ($this->input->post('upload')) {
+			$this->load->model('product_model');
+			$query = $this->product_model->save_product_image();
+
+			if($query) {
+				$this->load->model('menu_model');
+					
+					$data['cat'] = $this->menu_model->get_categories();
+						
+					$data['manufacturer'] = $this->menu_model->get_manufacturers();
+
+					//$data['error'] = '';
+
+					$this->load->view('add_product_category', $data);
+			}
 		}
 	}
 
@@ -116,5 +137,28 @@ class Products extends CI_Controller {
 	            $this->db->insert('prod_image', $input_data);
 	        }
 	    } 
+	}
+
+	public function add_category() {
+		$cat_id = $_POST['cat_id'];
+
+		$this->load->model('product_model');	
+		$query = $this->product_model->save_product_category($cat_id);
+	}
+
+	public function view_product() {
+		$id = $_GET['id'];
+
+		$this->load->model('menu_model');
+					
+		$data['cat'] = $this->menu_model->get_categories();
+				
+		$data['manufacturer'] = $this->menu_model->get_manufacturers();
+
+
+		$this->load->model('product_model');
+		$data['product'] = $this->product_model->get_product($id);
+
+		$this->load->view('view_product', $data);
 	}
 }

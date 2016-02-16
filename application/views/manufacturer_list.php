@@ -35,10 +35,6 @@
 
 }
 
-#name, #branch {display: inline;}
-#designation {margin-top: -1px; font-weight: 400;}
-#email {text-decoration: underline; font-weight: bold;}
-.dir {border-bottom: 1px solid rgba( 0, 0, 0, 0.05 );}
 
 
 </style>
@@ -118,8 +114,6 @@
                     </div><!-- inner custom column end -->
 
                 </div><!-- doc body wrapper end -->
-
-            <?php include 'include/side_bar.php' ?>
 
         </div><!-- row end -->
 
