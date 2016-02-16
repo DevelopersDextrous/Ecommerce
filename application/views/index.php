@@ -76,7 +76,7 @@
             <div class="container"><!-- container -->
                 <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Featured Products</h1>
                 <div class="row no-gutter fullwidth"><!-- row -->
-                    <?php foreach ($records->result() as $key): ?>
+                    <?php foreach ($records as $key): ?>
                         <div class="col-lg-8 col-lg-offset 2 clearfix"><!-- featured posts slider -->
 
 
@@ -88,7 +88,7 @@
                             echo $key->image;
                             ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" >
 
-                            <a href="products/view_product?id=<?php echo $key->id; ?>"><h3 id="name"><?php echo $key->name; ?></h3></a>
+                            <a href="index.php/products/view_product?id=<?php echo $key->id; ?>"><h3 id="name"><?php echo $key->name; ?></h3></a>
                             <h5 id="branch"><?php echo $key->description; ?></h5>
                             <h5 id="branch"><?php echo $key->price; ?></h5>
 

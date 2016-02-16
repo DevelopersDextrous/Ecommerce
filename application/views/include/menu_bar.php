@@ -9,7 +9,7 @@
             <a href="#" class="Pages Collection" title="Manufacturers">Manufacturers</a>
             <ul class="sub-menu">
                 <?php foreach ($manufacturer as $key) { ?>
-                    <li><a href="#"><?php echo $key->name; ?></a></li>
+                    <li><a href="manufacturer/get_products?id=<?php echo $key->id; ?>"><?php echo $key->name; ?></a></li>
                 <?php } ?>
             </ul>
         </li>
@@ -18,7 +18,7 @@
             <a href="#" class="Pages Collection" title="Categories">Categories</a>
             <ul class="sub-menu">
                 <?php foreach ($cat as $key) { ?>
-                    <li><a href="#"><?php echo $key->name; ?></a></li>
+                    <li><a href="category/get_products?id=<?php echo $key->id; ?>"><?php echo $key->name; ?></a></li>
                 <?php } ?>
             </ul>
         </li>

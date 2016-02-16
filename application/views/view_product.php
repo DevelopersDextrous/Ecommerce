@@ -16,6 +16,7 @@
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/back.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url(); ?>css/cart.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
 
@@ -40,9 +41,10 @@
                 <?php include 'include/logo.php' ?>
 
                 <?php include 'include/menu_bar.php' ?>
+                <?php include 'include/cart.php' ?>
 
             </div>
-          <?php include 'include/cart.php' ?>
+          
 
         </div><!-- row end -->
 
@@ -145,6 +147,7 @@
 
 <!-- Theme -->
 <script src="<?php echo base_url(); ?>js/theme.js"></script>
+<script src="<?php echo base_url(); ?>js/cart.js"></script>
 
 </body>
 </html>
