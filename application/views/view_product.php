@@ -42,7 +42,8 @@
                 <?php include 'include/menu_bar.php' ?>
 
             </div>
-            
+          <?php include 'include/cart.php' ?>
+
         </div><!-- row end -->
 
     </div><!-- container + head wrapper end -->

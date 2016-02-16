@@ -63,20 +63,13 @@
                 </div>
 
 
-
+<?php include 'include/cart.php' ?>
 
             </div><!-- row end -->
 
         </div><!-- container + head wrapper end -->
 
-        <!--Shopping Cart-->
-        <div id="cart_icon">
-            <img id="cart_img" src="<?php echo base_url(); ?>img/cart.png" alt=""/><!--
-            --><p id="numberOfItems"><b id="cartItems">0</b></p>
-            <div id="comment_bubble"></div>
-        </div>
-
-        <!--Shopping Cart End-->
+        
 
         <div id="k-body"><!-- content wrapper -->
 
