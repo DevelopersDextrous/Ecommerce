@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Directors</title>
+    <title>Product Details</title>
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -17,11 +17,7 @@
     <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link href="<?php echo base_url(); ?>css/back.css" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url(); ?>css/cart.css" rel="stylesheet" type="text/css">
-<style type="text/css">
 
-
-
-</style>
 </head>
 
 <body role="document" class="page">

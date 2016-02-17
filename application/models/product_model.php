@@ -71,12 +71,22 @@ class Product_model extends CI_Model {
 
 	public function get_product($id) {
 
-		$q = $this->db->query("SELECT products.name, products.description, products.price,
-		products.quantity, products.date_added, products.image,
-		categories.name AS cat_name, manufacturers.name AS manu_name FROM products 
-			INNER JOIN product_category ON products.id = product_category.p_id 
-			INNER JOIN categories ON categories.id = product_category.cat_id
-			INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+		$q = $this->db->query("SELECT 
+                    products.name, 
+                    products.description,
+                    products.price,
+		products.quantity,
+                products.date_added, 
+                products.image,
+		T.cat_name,
+                manufacturers.name AS manu_name  
+                    FROM products 
+			INNER JOIN 
+                        (SELECT DISTINCT product_category.p_id AS pp_id, categories.name AS cat_name FROM categories 
+                        INNER JOIN product_category 
+                        ON categories.id = product_category.cat_id) AS T
+                        ON products.id = T.pp_id 
+                        INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
 			WHERE products.id = '$id' ");
 
 		if ($q->num_rows > 0) {

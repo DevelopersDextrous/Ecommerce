@@ -14,8 +14,8 @@ class Orders extends CI_Controller {
 
 	public function pull_orders_list() {
 
-		$q = "SELECT orders.id, orders.invoice, orders.quantity, orders.status, orders.order_date, orders.order_time,
-		orders.address, orders.payment_type, users.first_name, users.last_name, users.email, users.contact, products.name, products.price  
+		$q = "SELECT orders.id, orders.invoice, orders.quantity, orders.status, orders.order_date, orders.order_time, orders.address, 
+		orders.payment_type, users.first_name, users.last_name, users.email, users.contact, products.name, products.price  
 		FROM orders INNER JOIN users ON orders.user_id = users.id
 		INNER JOIN products ON orders.prod_id = products.id
 		ORDER BY orders.order_date DESC, orders.order_time DESC";
