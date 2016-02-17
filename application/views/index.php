@@ -16,7 +16,7 @@
         <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
         <link href="<?php echo base_url(); ?>css/logo.css" rel="stylesheet" type="text/css"><!-- theme styles -->
         <link href="<?php echo base_url(); ?>css/cart.css" rel="stylesheet" type="text/css"/><!-- cart style -->
-
+        <script src="<?php echo base_url(); ?>js/jquery-1.12.0.min.js" type="text/javascript"></script>
         <style type="text/css">
             .pagi_wrap a, .pagi_wrap strong{
                 padding: 6px 12px;
@@ -102,7 +102,7 @@
                                     <table class="table table-striped">
                                         <tr>
                                             <td><strong>Product Name:</strong></td>
-                                            <td><a href="<?php echo site_url(); ?>/products/view_product?id=<?php echo $key->id; ?>"><?php echo $key->name; ?></a></td>
+                                            <td><a  id="<?php echo $key->id; ?>" href="<?php echo site_url(); ?>/products/view_product?id=<?php echo $key->id; ?>"><?php echo $key->name; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Description:</strong></td>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="col-lg-2 col-lg-offset-1 clearfix">
-                                    <button id="addToCart" class="btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
+                                    <button id="<?php echo $key->id; ?>" class="addToCart btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
                                 </div>
                             </div>
 
@@ -180,17 +180,32 @@
         <script src="<?php echo base_url(); ?>js/theme.js"></script>
         <script src="<?php echo base_url(); ?>js/cart.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function (e) {
                 var login = "<?php echo $login; ?>";
-                $("#addToCart").click(function () {
-
-                    if(login == "not logged in")
+                var userId = "<?php echo $this->session->userdata('user_id'); ?>";
+                var itemId;
+                $(".addToCart").click(function (e) {
+                    if (login == "not logged in")
                     {
                         $("#callModal").trigger("click");
-                    }
-                    else if(login == "logged in")
+                    } else if (login == "logged in")
                     {
-                        
+                        itemId = e.target.id;
+                        alert(userId);
+                        var data = {
+                            userId: userId,
+                            itemId: itemId
+                        };
+                        $.ajax({
+                            data: data,
+                            type: "post",
+                            url: "<?php echo base_url() ?>" + "index.php/cart/addToCart",
+                            success: function (response) {
+                                var options = JSON.parse(response);
+                                //alert(response);
+                            }
+                        });
+
                     }
                 });
             });
