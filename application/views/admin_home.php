@@ -110,6 +110,13 @@
                                             <td><a href="<?php echo base_url(); ?>index.php/manufacturer/load_manufacturer_list" class="btn btn-danger">Delete</a></td>
                                         </tr>
 
+                                        <tr>
+                                            <td><b>Manage Orders</b></td>
+                                            <td><a href="<?php echo base_url(); ?>index.php/orders" class="btn btn-warning">Manage</a></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
                                     </table>
 
                                     

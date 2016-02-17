@@ -46,7 +46,7 @@
 
             .prod_view {
                 margin: 0 0 30px 0;
-                padding-bottom: 10px;
+                padding-bottom: 20px;
                 border-bottom: 1px solid #e3e3e3;
             }
 
