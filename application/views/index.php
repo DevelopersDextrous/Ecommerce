@@ -40,6 +40,16 @@
                 color: red;
             }
 
+            .page-title {
+                margin: 20px 0 20px 0;
+            }
+
+            .prod_view {
+                margin: 0 0 30px 0;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+
 
         </style>
     </head>
@@ -77,20 +87,38 @@
                 <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Featured Products</h1>
                 <div class="row no-gutter fullwidth"><!-- row -->
                     <?php foreach ($records as $key): ?>
-                        <div class="col-lg-8 col-lg-offset 2 clearfix"><!-- featured posts slider -->
+                        <div class="col-lg-12 clearfix"><!-- featured posts slider -->
 
 
+                            <div class="row no-gutter fullwidth prod_view">
+                                <div class="col-lg-3 clearfix">
+                                    <img src="<?php
+                                    echo base_url();
+                                    echo $key->image;
+                                    ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" height="170" width="250">
+                                </div>
 
+                                <div class="col-lg-6 clearfix">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <td><strong>Product Name:</strong></td>
+                                            <td><a href="<?php echo site_url(); ?>/products/view_product?id=<?php echo $key->id; ?>"><?php echo $key->name; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Description:</strong></td>
+                                            <td><?php echo $key->description; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Price:</strong></td>
+                                            <td><?php echo '$'.$key->price; ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
 
-
-                            <img src="<?php
-                            echo base_url();
-                            echo $key->image;
-                            ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" >
-
-                            <a href="index.php/products/view_product?id=<?php echo $key->id; ?>"><h3 id="name"><?php echo $key->name; ?></h3></a>
-                            <h5 id="branch"><?php echo $key->description; ?></h5>
-                            <h5 id="branch"><?php echo $key->price; ?></h5>
+                                <div class="col-lg-2 col-lg-offset-1 clearfix">
+                                    <button class="btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
+                                </div>
+                            </div>
 
 
 

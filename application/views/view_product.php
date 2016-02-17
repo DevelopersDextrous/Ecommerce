@@ -63,36 +63,70 @@
                         
                         <div class="row gutter"><!-- row -->
                             
-                            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                            <div class="col-lg-12 col-md-12">
                                 <h1 class="page-title text-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Manufacturers</h1>
                                 
                                 <div class="news-body">
                                  <?php foreach ($product as $key): ?>                              
                                 <div class="list-group dir">
 
-                                  <img src="<?php
+                                  <div class="row no-gutter fullwidth prod_view">
+                                    
+                                    <div class="col-lg-3 clearfix">
+                                      <img src="<?php
                                             echo base_url();
                                             echo $key->image;
                                             ?>" alt="..." class="img-thumbnail" title="<?php echo $key->name; ?>" >
-                                  <div class="">
-                                      <h3 id="name"><?php echo $key->name.", "; ?></h3>
-                                      <h5 id="branch"><?php echo $key->description; ?></h5>
+                                    </div>
+
+                                    <div class="col-lg-6 clearfix">
+                                      <table class="table table-striped">
+                                        <tr>
+                                          <td><strong>Price:</strong></td>
+                                          <td><?php echo $key->name; ?></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>Description:</strong></td>
+                                          <td><?php echo $key->description; ?></td>
+                                        </tr>
+    
+                                        <tr>
+                                          <td><strong>Price:</strong></td>
+                                          <td><?php echo '$'.$key->price; ?></td>
+                                        </tr>
+
+                                        <tr>
+                                          <td><strong>Quantity:</strong></td>
+                                          <td>
+                                            <?php if($key->quantity >= 1): 
+                                            echo 'Available';
+                                          else:
+                                            echo 'Not Available';
+                                          endif;
+                                          ?>
+                                          </td>
+                                        </tr>
+
+                                        <tr>
+                                          <td><strong>Categories:</strong></td>
+                                          <td><?php echo $key->cat_name." "; ?></td>
+                                        </tr>
+
+                                        <tr>
+                                          <td><strong>Manufacturer:</strong></td>
+                                          <td><?php echo $key->manu_name; ?></td>
+                                        </tr>
+
+                                      </table>
+                                    </div>
+
+                                    <div class="col-lg-2 col-lg-offset-1 clearfix">
+                                    <button class="btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
+                                </div>
 
                                   </div>
 
-                                  <h5 id="price"><?php echo $key->price; ?></h5>
-                                  <h5 id="quantity"><?php if($key->quantity >= 1): 
-                                    echo 'Available';
-                                    else:
-                                      echo 'Not Available';
-                                    endif;
-                                  ?>
-
-                                  </h5>
-
-                                  <h5 id="date"><?php echo $key->date_added; ?></h5>
-                                  <h5 id="cat"><?php echo $key->cat_name." "; ?></h5>
-                                  <h5 id="manu"><?php echo $key->manu_name; ?></h5>
+                                
                                   
                                 
                                 </div>
