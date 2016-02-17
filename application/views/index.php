@@ -73,13 +73,13 @@
                 </div>
 
 
-<?php include 'include/cart.php' ?>
+                <?php include 'include/cart.php' ?>
 
             </div><!-- row end -->
 
         </div><!-- container + head wrapper end -->
 
-        
+
 
         <div id="k-body"><!-- content wrapper -->
 
@@ -110,13 +110,13 @@
                                         </tr>
                                         <tr>
                                             <td><strong>Price:</strong></td>
-                                            <td><?php echo '$'.$key->price; ?></td>
+                                            <td><?php echo '$' . $key->price; ?></td>
                                         </tr>
                                     </table>
                                 </div>
 
                                 <div class="col-lg-2 col-lg-offset-1 clearfix">
-                                    <button class="btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
+                                    <button id="addToCart" class="btn btn-lg btn-info add_to_cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
                                 </div>
                             </div>
 
@@ -140,7 +140,13 @@
             </div><!-- container end -->
 
         </div><!-- content wrapper end -->
-
+        <?php
+        if ($this->session->userdata('is_logged_in_user') == false) {
+            $login = "not logged in";
+        } else {
+            $login = "logged in";
+        }
+        ?>
 
         <?php include 'include/footer.php'; ?>
         <?php include 'include/modal.php'; ?>
@@ -173,6 +179,22 @@
         <!-- Theme -->
         <script src="<?php echo base_url(); ?>js/theme.js"></script>
         <script src="<?php echo base_url(); ?>js/cart.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var login = "<?php echo $login; ?>";
+                $("#addToCart").click(function () {
+
+                    if(login == "not logged in")
+                    {
+                        $("#callModal").trigger("click");
+                    }
+                    else if(login == "logged in")
+                    {
+                        
+                    }
+                });
+            });
+        </script>
 
     </body>
 </html>

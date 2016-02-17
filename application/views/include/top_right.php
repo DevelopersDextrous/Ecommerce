@@ -37,7 +37,7 @@
 		<nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="#mymodal" data-toggle="modal" data-target="#myModal" style="font-size: 14px; font-weight: bold;">
+                    <li><a id="callModal" href="#mymodal" data-toggle="modal" data-target="#myModal" style="font-size: 14px; font-weight: bold;">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
                     Login</a></li>
 
