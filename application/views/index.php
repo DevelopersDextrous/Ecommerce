@@ -191,7 +191,6 @@
                     } else if (login == "logged in")
                     {
                         itemId = e.target.id;
-                        alert(userId);
                         var data = {
                             userId: userId,
                             itemId: itemId
@@ -202,10 +201,9 @@
                             url: "<?php echo base_url() ?>" + "index.php/cart/addToCart",
                             success: function (response) {
                                 var options = JSON.parse(response);
-                                //alert(response);
+                                alert("sdf"+response);
                             }
                         });
-
                     }
                 });
             });
